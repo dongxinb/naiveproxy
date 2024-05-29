@@ -387,7 +387,7 @@ int TCPSocketPosix::GetPeerAddress(IPEndPoint* address) const {
 
 int TCPSocketPosix::SetDefaultOptionsForServer() {
   DCHECK(socket_);
-  LOG(INFO) << "[test] SetDefaultOptionsForServer, fd=" << socket_->socket_fd() << "\n";
+  LOG(INFO) << "[test] SetDefaultOptionsForServer, fd=" << socket_->socket_fd();
 #if BUILDFLAG(IS_LINUX)
   int reuseport = 1;
   int rv =
@@ -404,7 +404,7 @@ int TCPSocketPosix::SetDefaultOptionsForServer() {
 void TCPSocketPosix::SetDefaultOptionsForClient() {
   DCHECK(socket_);
 
-  LOG(INFO) << "[test] SetDefaultOptionsForClient, fd=" << socket_->socket_fd() << "\n";
+  LOG(INFO) << "[test] SetDefaultOptionsForClient, fd=" << socket_->socket_fd();
   // This mirrors the behaviour on Windows. See the comment in
   // tcp_socket_win.cc after searching for "NODELAY".
   // If SetTCPNoDelay fails, we don't care.
@@ -426,6 +426,8 @@ void TCPSocketPosix::SetDefaultOptionsForClient() {
 
   SetTCPKeepAlive(socket_->socket_fd(), true, kTCPKeepAliveSeconds);
 #endif
+
+  SetReceiveBufferSize(8750000);
 }
 
 int TCPSocketPosix::AllowAddressReuse() {
