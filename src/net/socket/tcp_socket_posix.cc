@@ -388,7 +388,7 @@ int TCPSocketPosix::GetPeerAddress(IPEndPoint* address) const {
 
 int TCPSocketPosix::SetDefaultOptionsForServer() {
   DCHECK(socket_);
-  print("[test] SetDefaultOptionsForServer");
+  printf("[test] SetDefaultOptionsForServer");
 #if BUILDFLAG(IS_LINUX)
   int reuseport = 1;
   int rv =
@@ -405,7 +405,7 @@ int TCPSocketPosix::SetDefaultOptionsForServer() {
 void TCPSocketPosix::SetDefaultOptionsForClient() {
   DCHECK(socket_);
 
-  print("[test] SetDefaultOptionsForClient");
+  printf("[test] SetDefaultOptionsForClient");
   // This mirrors the behaviour on Windows. See the comment in
   // tcp_socket_win.cc after searching for "NODELAY".
   // If SetTCPNoDelay fails, we don't care.
