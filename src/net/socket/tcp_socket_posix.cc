@@ -7,7 +7,7 @@
 #include <errno.h>
 #include <netinet/tcp.h>
 #include <sys/socket.h>
-#include <stdlib.h>
+#include <cstdio>
 
 #include <algorithm>
 #include <memory>

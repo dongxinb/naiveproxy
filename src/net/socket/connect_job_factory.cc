@@ -8,7 +8,7 @@
 #include <optional>
 #include <utility>
 #include <vector>
-#include <stdlib.h>
+#include <cstdio>
 
 #include "base/check.h"
 #include "base/memory/scoped_refptr.h"
