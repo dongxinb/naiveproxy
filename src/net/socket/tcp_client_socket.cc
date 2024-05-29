@@ -7,6 +7,7 @@
 #include <memory>
 #include <utility>
 
+#include "base/logging.h"
 #include "base/check_op.h"
 #include "base/functional/bind.h"
 #include "base/functional/callback_helpers.h"
@@ -170,6 +171,7 @@ TCPClientSocket::TCPClientSocket(
       network_quality_estimator_(network_quality_estimator),
       network_(network) {
   DCHECK(socket_);
+  LOG(INFO) << "[test] new TCPClientSocket";
   if (socket_->IsValid())
     socket_->SetDefaultOptionsForClient();
 #if defined(TCP_CLIENT_SOCKET_OBSERVES_SUSPEND)
@@ -553,7 +555,7 @@ int TCPClientSocket::OpenSocket(AddressFamily family) {
       return result;
     }
   }
-
+  LOG(INFO) << "[test] Open Socket";
   socket_->SetDefaultOptionsForClient();
 
   return OK;
@@ -605,3 +607,4 @@ base::TimeDelta TCPClientSocket::GetConnectAttemptTimeout() {
 }
 
 }  // namespace net
+
