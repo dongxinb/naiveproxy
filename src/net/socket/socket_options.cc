@@ -57,7 +57,7 @@ int SetReuseAddr(SocketDescriptor fd, bool reuse) {
 }
 
 int SetSocketReceiveBufferSize(SocketDescriptor fd, int32_t size) {
-  DLOG(ERROR) << "[test] SetSocketReceiveBufferSize: " << size << ", in fd: " << fd << "\n";
+  LOG(INFO) << "[test] SetSocketReceiveBufferSize: " << size << ", in fd: " << fd << "\n";
   int rv = setsockopt(fd, SOL_SOCKET, SO_RCVBUF,
                       reinterpret_cast<const char*>(&size), sizeof(size));
 #if BUILDFLAG(IS_WIN)
