@@ -397,6 +397,8 @@ int TCPSocketPosix::SetDefaultOptionsForServer() {
     return MapSystemError(errno);
   }
 #endif
+  SetReceiveBufferSize(10485760);
+  SetSendBufferSize(10485760);
 
   return AllowAddressReuse();
 }
@@ -427,7 +429,8 @@ void TCPSocketPosix::SetDefaultOptionsForClient() {
   SetTCPKeepAlive(socket_->socket_fd(), true, kTCPKeepAliveSeconds);
 #endif
 
-  SetReceiveBufferSize(8750000);
+  SetReceiveBufferSize(10485760);
+  SetSendBufferSize(10485760);
 }
 
 int TCPSocketPosix::AllowAddressReuse() {
