@@ -93,15 +93,15 @@ constexpr net::NetworkTrafficAnnotationTag
         }
     )");
 
-const int kReadBufferSize = 8 * 1024;
+const int kReadBufferSize = 8 * 1024*2;
 const int kDefaultConnectionAtRiskOfLossSeconds = 10;
 const int kHungIntervalSeconds = 10;
 
 // Default initial value for HTTP/2 SETTINGS.
 const uint32_t kDefaultInitialHeaderTableSize = 4096;
 const uint32_t kDefaultInitialEnablePush = 1;
-const uint32_t kDefaultInitialInitialWindowSize = 65535;
-const uint32_t kDefaultInitialMaxFrameSize = 16384;
+const uint32_t kDefaultInitialInitialWindowSize = 655350;
+const uint32_t kDefaultInitialMaxFrameSize = 163840;
 
 // These values are persisted to logs. Entries should not be renumbered, and
 // numeric values should never be reused.
