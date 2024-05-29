@@ -6,6 +6,7 @@
 
 #include <cerrno>
 
+#include <stdlib.h>
 #include "build/build_config.h"
 #include "net/base/net_errors.h"
 
