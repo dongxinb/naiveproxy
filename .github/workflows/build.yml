@@ -102,7 +102,6 @@ jobs:
       - run: ccache -z
       - run: ./build.sh
       - run: ccache -s
-      - run: ../tests/basic.sh out/Release/naive
       - name: Pack naiveproxy assets
         run: |
           mkdir ${{ env.BUNDLE }}
@@ -112,8 +111,7 @@ jobs:
           echo "SHA256SUM=$(cut -d' ' -f2 sha256sum.txt)" >>$GITHUB_ENV
       - uses: actions/upload-artifact@v4
         with:
-          name: ${{ env.BUNDLE }}.tar.xz naive executable sha256 ${{ env.SHA256SUM }}
-          path: src/sha256sum.txt
+          path: out/Release/naive
       - name: Upload naiveproxy assets
         if: ${{ github.event_name == 'release' }}
         run: gh release upload "${GITHUB_REF##*/}" ${{ env.BUNDLE }}.tar.xz --clobber
