@@ -131,19 +131,23 @@ std::unique_ptr<ConnectJob> ConnectJobFactory::CreateConnectJob(
       disable_cert_network_fetches, common_connect_job_params,
       proxy_dns_network_anonymization_key_);
 
+  print("[test] CreateConnectJob");
   if (connect_job_params.is_ssl()) {
+    print("[test] Create SSL ConnectJob");
     return ssl_connect_job_factory_->Create(
         request_priority, socket_tag, common_connect_job_params,
         connect_job_params.take_ssl(), delegate, /*net_log=*/nullptr);
   }
 
   if (connect_job_params.is_transport()) {
+    print("[test] Create Transport ConnectJob");
     return transport_connect_job_factory_->Create(
         request_priority, socket_tag, common_connect_job_params,
         connect_job_params.take_transport(), delegate, /*net_log=*/nullptr);
   }
 
   if (connect_job_params.is_http_proxy()) {
+    print("[test] Create HTTP PROXY ConnectJob");
     return http_proxy_connect_job_factory_->Create(
         request_priority, socket_tag, common_connect_job_params,
         connect_job_params.take_http_proxy(), delegate,
@@ -151,9 +155,11 @@ std::unique_ptr<ConnectJob> ConnectJobFactory::CreateConnectJob(
   }
 
   CHECK(connect_job_params.is_socks());
+  print("[test] Create Socks ConnectJob");
   return socks_connect_job_factory_->Create(
       request_priority, socket_tag, common_connect_job_params,
       connect_job_params.take_socks(), delegate, /*net_log=*/nullptr);
 }
 
 }  // namespace net
+
