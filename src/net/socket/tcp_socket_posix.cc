@@ -7,6 +7,7 @@
 #include <errno.h>
 #include <netinet/tcp.h>
 #include <sys/socket.h>
+#include <stdlib.h>
 
 #include <algorithm>
 #include <memory>
@@ -387,7 +388,7 @@ int TCPSocketPosix::GetPeerAddress(IPEndPoint* address) const {
 
 int TCPSocketPosix::SetDefaultOptionsForServer() {
   DCHECK(socket_);
-
+  print("[test] SetDefaultOptionsForServer");
 #if BUILDFLAG(IS_LINUX)
   int reuseport = 1;
   int rv =
@@ -404,6 +405,7 @@ int TCPSocketPosix::SetDefaultOptionsForServer() {
 void TCPSocketPosix::SetDefaultOptionsForClient() {
   DCHECK(socket_);
 
+  print("[test] SetDefaultOptionsForClient");
   // This mirrors the behaviour on Windows. See the comment in
   // tcp_socket_win.cc after searching for "NODELAY".
   // If SetTCPNoDelay fails, we don't care.
@@ -703,3 +705,4 @@ bool TCPSocketPosix::GetEstimatedRoundTripTime(base::TimeDelta* out_rtt) const {
 }
 
 }  // namespace net
+
