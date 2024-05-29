@@ -7,7 +7,6 @@
 #include <errno.h>
 #include <netinet/tcp.h>
 #include <sys/socket.h>
-#include <cstdio>
 
 #include <algorithm>
 #include <memory>
@@ -388,7 +387,7 @@ int TCPSocketPosix::GetPeerAddress(IPEndPoint* address) const {
 
 int TCPSocketPosix::SetDefaultOptionsForServer() {
   DCHECK(socket_);
-  printf("[test] SetDefaultOptionsForServer");
+  DLOG(ERROR) << "[test] SetDefaultOptionsForServer, fd=" << socket_->socket_fd() << "\n";
 #if BUILDFLAG(IS_LINUX)
   int reuseport = 1;
   int rv =

@@ -8,8 +8,8 @@
 #include <optional>
 #include <utility>
 #include <vector>
-#include <cstdio>
 
+#include "base/logging.h"
 #include "base/check.h"
 #include "base/memory/scoped_refptr.h"
 #include "net/base/host_port_pair.h"
@@ -132,23 +132,22 @@ std::unique_ptr<ConnectJob> ConnectJobFactory::CreateConnectJob(
       disable_cert_network_fetches, common_connect_job_params,
       proxy_dns_network_anonymization_key_);
 
-  printf("[test] CreateConnectJob");
   if (connect_job_params.is_ssl()) {
-    printf("[test] Create SSL ConnectJob");
+    DLOG(ERROR) << "[test] Create SSL ConnectJob\n";
     return ssl_connect_job_factory_->Create(
         request_priority, socket_tag, common_connect_job_params,
         connect_job_params.take_ssl(), delegate, /*net_log=*/nullptr);
   }
 
   if (connect_job_params.is_transport()) {
-    printf("[test] Create Transport ConnectJob");
+    DLOG(ERROR) << "[test] Create Transport ConnectJob\n";
     return transport_connect_job_factory_->Create(
         request_priority, socket_tag, common_connect_job_params,
         connect_job_params.take_transport(), delegate, /*net_log=*/nullptr);
   }
 
   if (connect_job_params.is_http_proxy()) {
-    printf("[test] Create HTTP PROXY ConnectJob");
+    DLOG(ERROR) << "[test] Create HTTP PROXY ConnectJob\n";
     return http_proxy_connect_job_factory_->Create(
         request_priority, socket_tag, common_connect_job_params,
         connect_job_params.take_http_proxy(), delegate,
@@ -156,7 +155,7 @@ std::unique_ptr<ConnectJob> ConnectJobFactory::CreateConnectJob(
   }
 
   CHECK(connect_job_params.is_socks());
-  printf("[test] Create Socks ConnectJob");
+  DLOG(ERROR) << "[test] Create Socks ConnectJob\n";
   return socks_connect_job_factory_->Create(
       request_priority, socket_tag, common_connect_job_params,
       connect_job_params.take_socks(), delegate, /*net_log=*/nullptr);

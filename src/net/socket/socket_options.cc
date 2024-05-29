@@ -6,7 +6,6 @@
 
 #include <cerrno>
 
-#include <cstdio>
 #include "build/build_config.h"
 #include "net/base/net_errors.h"
 
@@ -58,7 +57,7 @@ int SetReuseAddr(SocketDescriptor fd, bool reuse) {
 }
 
 int SetSocketReceiveBufferSize(SocketDescriptor fd, int32_t size) {
-  printf("[test] SetSocketReceiveBufferSize: %u", size);
+  DLOG(ERROR) << "[test] SetSocketReceiveBufferSize: " << size << ", in fd: " << fd << "\n";
   int rv = setsockopt(fd, SOL_SOCKET, SO_RCVBUF,
                       reinterpret_cast<const char*>(&size), sizeof(size));
 #if BUILDFLAG(IS_WIN)
