@@ -41,8 +41,8 @@
 namespace net {
 
 // The maximum receive window sizes for HTTP/2 sessions and streams.
-const int32_t kSpdySessionMaxRecvWindowSize = 125 * 1024 * 1024;  // 125 MB
-const int32_t kSpdyStreamMaxRecvWindowSize = 50 * 1024 * 1024;    //  50 MB
+const int32_t kSpdySessionMaxRecvWindowSize = 1250 * 1024 * 1024;  // 125 MB
+const int32_t kSpdyStreamMaxRecvWindowSize = 500 * 1024 * 1024;    //  50 MB
 
 // Value of SETTINGS_ENABLE_PUSH reflecting that server push is not supported.
 const uint32_t kSpdyDisablePush = 0;
